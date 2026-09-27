@@ -308,4 +308,39 @@ function updateProductPassport() {
     document.getElementById("passport-produced")
         .textContent = salad.producedAt;
 }
+function updateProductPassport() {
+
+    document.getElementById("passport-product")
+        .textContent = salad.productName;
+
+    document.getElementById("passport-batch")
+        .textContent = salad.batchId;
+
+    document.getElementById("passport-produced")
+        .textContent = salad.producedAt;
+
+}
+
+
+function getBatchFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const batch =
+        params.get("batch");
+
+    if (batch) {
+
+        salad.batchId = batch;
+
+    }
+
+}
+
+
+getBatchFromURL();
+
 updateProductPassport();
