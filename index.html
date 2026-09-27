@@ -25,7 +25,7 @@
 
     <!-- BAGIAN UTAMA -->
 
-    <section class="hero">
+    <section class=" hero landing-screen">
 
         <div class="hero-text">
 
@@ -38,7 +38,17 @@
                 <br>
                 Your Salad.
             </h1>
-<div class="batch-badge">
+    <button
+    class="primary-button"
+    onclick="showSaladSelection()"
+>
+    EXPLORE MY SALAD →
+</button>      
+<div
+    class="batch-badge"
+    style="display: none;"
+>
+
     <span>
         FRESHTRACE BATCH
     </span>
@@ -47,8 +57,10 @@
         FT-2709-001
     </strong>
 
-</div>
-<div class="passport-card">
+<div
+    class="passport-card"
+    style="display: none;"
+>
 
     <p class="eyebrow">
         PRODUCT PASSPORT
@@ -63,6 +75,50 @@
         <span>
             BATCH
         </span>
+
+        <strong id="passport-batch">
+            FT-2709-001
+        </strong>
+
+    </div>
+
+    <div class="passport-row">
+
+        <span>
+            PRODUCED
+        </span>
+
+        <strong id="passport-produced">
+            27 September 2026 • 08:30
+        </strong>
+
+    </div>
+
+    <div class="passport-row">
+
+        <span>
+            INGREDIENTS
+        </span>
+
+        <strong>
+            🥬 🥕 🌱
+        </strong>
+
+    </div>
+
+    <div class="passport-status">
+
+        <span>
+            TRACEABILITY
+        </span>
+
+        <strong>
+            ✓ RECORDED
+        </strong>
+
+    </div>
+
+</div>
 
         <strong id="passport-batch">
             FT-2709-001
@@ -110,11 +166,11 @@
     </div>
 
 </div>
-            <p>
-                Know your farmer.
-                Know your freshness.
-            </p>
-
+          <p>
+    Discover where your ingredients come from,
+    <br>
+    from farm to your fork.
+</p>
         </div>
 
 
@@ -129,26 +185,93 @@
         </div>
 
     </section>
+<!-- PICK YOUR SALAD -->
+
+<section
+    id="salad-selection"
+    class="selection-screen"
+    style="display: none;"
+>
+<button
+    class="back-button"
+    onclick="showHome()"
+>
+    ← Back
+</button>
+    <p class="eyebrow">
+        FRESHTRACE
+    </p>
+
+    <h2>
+        PICK YOUR SALAD
+    </h2>
+
+    <p class="section-description">
+        Choose a salad to explore its ingredients.
+    </p>
 
 
+    <div class="salad-choice">
 
+        <button
+            class="salad-card"
+            onclick="showSaladIngredients()"
+        >
+
+            <div class="salad-image">
+                🥗
+            </div>
+
+            <div>
+
+                <span>
+                    FRESHTRACE
+                </span>
+
+                <h3>
+                    Fresh Garden Salad
+                </h3>
+
+                <p>
+                    Cabbage • Carrot • Lettuce
+                </p>
+
+            </div>
+
+            <strong>
+                →
+            </strong>
+
+        </button>
+
+    </div>
+
+</section>
     <!-- BAGIAN BAHAN -->
 
-    <section class="ingredients-section">
-
+<section
+    id="ingredient-selection"
+    class="ingredients-section"
+    style="display: none;"
+>
+<button
+    class="back-button"
+    onclick="showSaladSelection()"
+>
+    ← Back to salads
+</button>
         <p class="eyebrow">
             01 • YOUR INGREDIENTS
         </p>
 
-        <h2>
-            What's inside your salad?
-        </h2>
+      <h2>
+    PICK YOUR INGREDIENT
+</h2>
 
-        <p>
-            Click an ingredient to discover
-            its journey.
-        </p>
-
+<p>
+    Choose an ingredient to trace
+    its journey from farm to fork.
+</p>
 
         <div class="ingredients">
 
@@ -393,3 +516,15 @@
 
 </body>
 </html>
+function showHome() {
+
+    document.getElementById("salad-selection")
+        .style.display = "none";
+
+    document.getElementById("ingredient-selection")
+        .style.display = "none";
+
+    document.querySelector(".hero")
+        .style.display = "flex";
+
+}
