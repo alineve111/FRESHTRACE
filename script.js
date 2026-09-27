@@ -1,1149 +1,359 @@
-* {
-    box-sizing: border-box;
-}
-
-
-body {
-
-    margin: 0;
-
-    font-family: Arial, sans-serif;
-
-    background: #f5f7f2;
-
-    color: #24372a;
-
-    line-height: 1.5;
-
-}
-
-
-/* HERO */
-
-.hero {
-
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 70px 30px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 50px;
-
-    align-items: center;
-
-}
-
-
-.hero-text h1 {
-
-    font-size: 60px;
-
-    line-height: 0.95;
-
-    margin: 10px 0 20px;
-
-}
-
-
-.eyebrow {
-
-    color: #376b48;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* SALAD */
-
-.salad-placeholder {
-
-    height: 400px;
-
-    border-radius: 30px;
-
-    background: #dfeadf;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 100px;
-
-}
-
-
-.salad-placeholder p {
-
-    font-size: 20px;
-
-}
-
-
-/* INGREDIENTS */
-
-.ingredients-section,
-.trace-section,
-.freshness {
-
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 60px 30px;
-
-}
-
-
-.ingredients {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 20px;
-
-    margin-top: 30px;
-
-}
-
-
-.ingredient {
-
-    border: none;
-
-    background: white;
-
-    padding: 12px;
-
-    border-radius: 20px;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition: 0.2s;
-
-}
-
-
-.ingredient:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.08);
-
-}
-
-
-.ingredient-image {
-
-    width: 100%;
-
-    aspect-ratio: 1;
-
-    border-radius: 15px;
-
-    background: #eef4ed;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 70px;
-
-}
-
-
-.ingredient h3 {
-
-    margin:
-        10px 5px 2px;
-
-}
-
-
-.ingredient span {
-
-    margin-left: 5px;
-
-    color: #718078;
-
-    font-size: 13px;
-
-}
-
-
-/* TRACEABILITY */
-
-.trace-section {
-
-    background: white;
-
-    border-radius: 30px;
-
-    margin-top: 30px;
-
-}
-
-
-#ingredient-detail {
-
-    margin-top: 30px;
-
-}
-
-
-/* FRESHNESS */
-
-.fresh-card {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
-
-    background: #315f43;
-
-    color: white;
-
-    padding: 25px;
-
-    border-radius: 25px;
-
-}
-
-
-.fresh-card span {
-
-    display: block;
-
-    font-size: 11px;
-
-    opacity: .7;
-
-    margin-bottom: 5px;
-
-}
-
-
-.fresh-card strong {
-
-    font-size: 16px;
-
-}
-
-
-/* HP */
-
-@media (max-width: 700px) {
-
-    .hero {
-
-        grid-template-columns: 1fr;
-
+const salad = {
+    productName: "Fresh Garden Salad",
+    batchId: "FT-2709-001",
+    producedAt: "27 September 2026 • 08:30",
+    ingredients: [
+        "cabbage",
+        "carrot",
+        "lettuce"
+    ]
+};
+
+const ingredients = {
+    cabbage: {
+        name: "Cabbage",
+        farmer: "Kelompok Tani Sumber Rejeki",
+        location: "Batu, Jawa Timur",
+        harvest: "24 September 2026",
+        batch: "KB-2409-A",
+        price: "Rp4.800/kg"
+    },
+
+    carrot: {
+        name: "Carrot",
+        farmer: "Kelompok Tani Makmur",
+        location: "Poncokusumo, Malang",
+        harvest: "24 September 2026",
+        batch: "WT-2409-B",
+        price: "Rp7.200/kg"
+    },
+
+    lettuce: {
+        name: "Lettuce",
+        farmer: "Mitra Tani Sejuk",
+        location: "Junrejo, Batu",
+        harvest: "25 September 2026",
+        batch: "SL-2409-C",
+        price: "Rp9.500/kg"
+    },
+    melon: {
+        name: "Melon",
+        farmer: "Kelompok Tani Mulyo",
+        location: "Kediri, Jawa Timur",
+        harvest: "24 September 2026",
+        batch: "ML-2409-D",
+        price: "Rp8.000/kg"
     }
+};
 
+function showIngredient(id) {
+    const data = ingredients[id];
+    const popup =
+        document.getElementById("popup");
+    const popupDetail =
+        document.getElementById("popup-detail");
+    popupDetail.innerHTML = `
+        <p class="eyebrow">
+            INGREDIENT TRACEABILITY
+        </p>
+        <h2>
+            🥬 ${data.name}
+        </h2>
+        <div class="popup-info">
+            <span>
+                👩‍🌾 FARMER
+            </span>
+            <strong>
+                ${data.farmer}
+            </strong>
+        </div>
+        <div class="popup-info">
+            <span>
+                📍 ORIGIN
+            </span>
+            <strong>
+                ${data.location}
+            </strong>
+        </div>
+        <div class="popup-info">
+            <span>
+                🌱 HARVEST
+            </span>
+            <strong>
+                ${data.harvest}
+            </strong>
+        </div>
+        <button
+            class="journey-button"
+            onclick="showJourney('${id}')"
+        >
+            TRACE MY INGREDIENT →
+        </button>
+    `;
+    popup.style.display = "flex";
+}
+function closePopup() {
+    const popup =
+        document.getElementById("popup");
+    popup.style.display = "none";
+}
 
-    .hero-text h1 {
+function showJourney(id) {
+    const data = ingredients[id];
+    const popupDetail =
+        document.getElementById("popup-detail");
+    popupDetail.innerHTML = `
+        <p class="eyebrow">
+            TRACEABILITY JOURNEY
+        </p>
+        <h2>
+            ${data.name}'s Journey
+        </h2>
+        <div class="journey">
+            <div class="journey-step">
+                <div class="journey-icon">
+                    🌱
+                </div>
+                <div>
+                    <small>
+                        FARM
+                    </small>
+                    <h3>
+                        ${data.location}
+                    </h3>
+                    <p>
+                        Partner farmer
+                    </p>
+                </div>
+            </div>
+            <div class="journey-line"></div>
+            <div class="journey-step">
+                <div class="journey-icon">
+                    🌾
+                </div>
+                <div>
+                    <small>
+                        HARVEST
+                    </small>
+                    <h3>
+                        ${data.harvest}
+                    </h3>
+                    <p>
+                        Freshly harvested
+                    </p>
+                </div>
+            </div>
+            <div class="journey-line"></div>
+            <div class="journey-step">
+                <div class="journey-icon">
+                    📦
+                </div>
+                <div>
+                    <small>
+                        COLLECTION
+                    </small>
+                    <h3>
+                        Batch ${data.batch}
+                    </h3>
+                    <p>
+                        Quality checked
+                    </p>
+                </div>
+            </div>
+            <div class="journey-line"></div>
+            <div class="journey-step">
+                <div class="journey-icon">
+                    🚚
+                </div>
+                <div>
+                    <small>
+                        DELIVERY
+                    </small>
+                    <h3>
+                        Fresh delivery
+                    </h3>
+                    <p>
+                        Cold-chain maintained
+                    </p>
+                </div>
+            </div>
+            <div class="journey-line"></div>
+            <div class="journey-step">
+                <div class="journey-icon">
+                    🥗
+                </div>
+                <div>
+                    <small>
+                        YOUR SALAD
+                    </small>
+                    <h3>
+                        FRESHTRACE
+                    </h3>
+                    <p>
+                        Ready to enjoy
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button
+            class="journey-button"
+            onclick="showMap('${id}')"
+        >
+            VIEW FARM MAP →
+        </button>
+    `;
+}
 
-        font-size: 45px;
-
+function showMap(id) {
+    const data = ingredients[id];
+    const popupDetail =
+        document.getElementById("popup-detail");
+    popupDetail.innerHTML = `
+        <p class="eyebrow">
+            FARM LOCATION
+        </p>
+        <h2>
+            📍 ${data.location}
+        </h2>
+        <div class="farm-map">
+            <div class="map-background">
+                <div class="map-road road-1"></div>
+                <div class="map-road road-2"></div>
+                <div class="map-road road-3"></div>
+                <div class="map-pin">
+                    📍
+                    <span>
+                        FARM
+                    </span>
+                </div>
+                <div class="map-label">
+                    ${data.location}
+                </div>
+            </div>
+            <p class="map-caption">
+                📍 Farm origin
+                <br>
+                Batch ${data.batch}
+            </p>
+        </div>
+        <button
+            class="journey-button"
+            onclick="showIngredient('${id}')"
+        >
+            ← BACK TO INGREDIENT
+        </button>
+    `;
+}
+function updateFreshness() {
+    const produced =
+        new Date("2026-09-27T08:30:00");
+    const expiry =
+        new Date("2026-09-28T08:30:00");
+    const now =
+        new Date();
+    const totalTime =
+        expiry - produced;
+    const remainingTime =
+        expiry - now;
+    let percentage =
+        (remainingTime / totalTime) * 100;
+    percentage =
+        Math.max(
+            0,
+            Math.min(100, percentage)
+        );
+    const percent =
+        Math.round(percentage);
+    const status =
+        document.getElementById(
+            "fresh-status"
+        );
+    const percentText =
+        document.getElementById(
+            "fresh-percent"
+        );
+    const progress =
+        document.getElementById(
+            "fresh-progress"
+        );
+    percentText.textContent =
+        percent + "%";
+    progress.style.width =
+        percent + "%";
+    if (percent > 50) {
+        status.textContent =
+            "FRESH";
+    } else if (percent > 20) {
+        status.textContent =
+            "CONSUME SOON";
+    } else if (percent > 0) {
+        status.textContent =
+            "EXPIRING SOON";
+    } else {
+        status.textContent =
+            "EXPIRED";
     }
-
-
-    .ingredients {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-
-    .fresh-card {
-
-        grid-template-columns: 1fr;
-
-    }
-
 }
-/* =========================
-   POPUP
-========================= */
+updateFreshness();
+function updateProductPassport() {
 
-.popup {
+    document.getElementById("passport-product")
+        .textContent = salad.productName;
 
-    display: none;
 
-    position: fixed;
+    document.getElementById("passport-batch")
+        .textContent = salad.batchId;
 
-    inset: 0;
 
-    background:
-        rgba(20, 35, 25, 0.65);
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    z-index: 1000;
-
+    document.getElementById("passport-produced")
+        .textContent = salad.producedAt;
 }
+function getBatchFromURL() {
 
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-.popup-content {
+    const batch =
+        params.get("batch");
 
-    position: relative;
+    if (batch) {
 
-    background: white;
-
-    width: 100%;
-
-    max-width: 500px;
-
-    padding: 40px;
-
-    border-radius: 30px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0, 0, 0, 0.2);
-
-}
-
-
-.close-button {
-
-    position: absolute;
-
-    top: 20px;
-
-    right: 20px;
-
-    width: 40px;
-
-    height: 40px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #eef4ed;
-
-    color: #24372a;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-}
-
-
-.close-button:hover {
-
-    background: #dce9dd;
-
-}
-
-
-.popup-content h2 {
-
-    font-size: 35px;
-
-    margin-top: 0;
-
-}
-
-
-.popup-info {
-
-    background: #f5f7f2;
-
-    padding: 15px;
-
-    border-radius: 15px;
-
-    margin-top: 10px;
-
-}
-
-
-.popup-info span {
-
-    display: block;
-
-    color: #718078;
-
-    font-size: 12px;
-
-    margin-bottom: 5px;
-
-}
-
-
-.journey-button {
-
-    width: 100%;
-
-    margin-top: 20px;
-
-    padding: 15px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    background: #315f43;
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-/* =========================
-   JOURNEY
-========================= */
-
-.journey {
-
-    margin-top: 25px;
-
-}
-
-
-.journey-step {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-}
-
-
-.journey-icon {
-
-    width: 50px;
-
-    height: 50px;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-    background: #eef4ed;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 23px;
-
-}
-
-
-.journey-step small {
-
-    color: #718078;
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-}
-
-
-.journey-step h3 {
-
-    margin:
-        2px 0;
-
-}
-
-
-.journey-step p {
-
-    margin: 0;
-
-    color: #718078;
-
-    font-size: 13px;
-
-}
-
-
-.journey-line {
-
-    width: 2px;
-
-    height: 30px;
-
-    background: #dce5dc;
-
-    margin-left: 24px;
-
-}
-/* =========================
-   FARM MAP
-========================= */
-
-.farm-map {
-    margin-top: 25px;
-}
-
-
-.map-background {
-    position: relative;
-
-    height: 220px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-        #dfeadf;
-}
-
-
-/* jalan */
-
-.map-road {
-    position: absolute;
-
-    background: #ffffff;
-
-    opacity: 0.7;
-
-    border-radius: 50px;
-}
-
-
-.road-1 {
-    width: 120%;
-    height: 25px;
-
-    top: 40%;
-
-    left: -10%;
-
-    transform: rotate(12deg);
-}
-
-
-.road-2 {
-    width: 100%;
-    height: 20px;
-
-    top: 65%;
-
-    left: 5%;
-
-    transform: rotate(-20deg);
-}
-
-
-.road-3 {
-    width: 20px;
-    height: 120%;
-
-    top: -10%;
-    left: 65%;
-
-    transform: rotate(15deg);
-}
-
-
-/* PIN */
-
-.map-pin {
-    position: absolute;
-
-    top: 38%;
-    left: 55%;
-
-    transform:
-        translate(-50%, -50%);
-
-    font-size: 42px;
-
-    text-align: center;
-}
-
-
-.map-pin span {
-    display: block;
-
-    margin-top: -5px;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    color: #315f43;
-}
-
-
-.map-label {
-    position: absolute;
-
-    bottom: 15px;
-    left: 15px;
-
-    background: white;
-
-    padding: 8px 12px;
-
-    border-radius: 10px;
-
-    font-size: 12px;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,0.08);
-}
-
-
-.map-caption {
-
-    color: #718078;
-
-    font-size: 12px;
-
-    margin-top: 8px;
-}
-/* =========================
-   FRESHNESS INDICATOR
-========================= */
-
-.fresh-status {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-}
-
-
-.fresh-dot {
-
-    width: 14px;
-
-    height: 14px;
-
-    border-radius: 50%;
-
-    background: #58a96b;
-
-}
-
-
-.fresh-status span,
-.fresh-info span {
-
-    display: block;
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-    opacity: 0.7;
-
-    margin-bottom: 5px;
-
-}
-
-
-.fresh-status strong {
-
-    font-size: 22px;
-
-}
-
-
-.fresh-score {
-
-    margin-top: 25px;
-
-}
-
-
-.fresh-score > strong {
-
-    font-size: 42px;
-
-}
-
-
-.fresh-bar {
-
-    width: 100%;
-
-    height: 10px;
-
-    margin-top: 10px;
-
-    background: rgba(255,255,255,0.2);
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-}
-
-
-.fresh-progress {
-
-    height: 100%;
-
-    width: 0%;
-
-    background: white;
-
-    border-radius: 20px;
-
-    transition: width 0.8s ease;
-
-}
-
-
-.fresh-info {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-
-    margin-top: 30px;
-
-}
-
-
-@media (max-width: 700px) {
-
-    .fresh-info {
-
-        grid-template-columns: 1fr;
+        salad.batchId = batch;
 
     }
 
 }
-/* =========================
-   BATCH BADGE
-========================= */
 
-.batch-badge {
 
-    display: inline-flex;
+getBatchFromURL();
 
-    align-items: center;
+updateProductPassport();
+function showSaladSelection() {
 
-    gap: 10px;
+    document.querySelector(".hero")
+        .style.display = "none";
 
-    margin-top: 15px;
-
-    padding: 8px 14px;
-
-    border-radius: 30px;
-
-    background: #eef4ed;
-
-    color: #315f43;
+    document.getElementById("salad-selection")
+        .style.display = "block";
 
 }
+function showSaladIngredients() {
 
+    document.getElementById("salad-selection")
+        .style.display = "none";
 
-.batch-badge span {
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-    opacity: 0.7;
+    document.getElementById("ingredient-selection")
+        .style.display = "block";
 
 }
+function showHome() {
 
+    document.getElementById("salad-selection").style.display = "none";
 
-.batch-badge strong {
+    document.getElementById("ingredient-selection").style.display = "none";
 
-    font-size: 13px;
-
-}
-/* =========================
-   PRODUCT PASSPORT
-========================= */
-
-.passport-card {
-
-    width: 100%;
-
-    max-width: 650px;
-
-    margin: 30px auto 0;
-
-    padding: 28px;
-
-    background: white;
-
-    border: 1px solid #e2e9e2;
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(36, 55, 42, 0.08);
-
-}
-
-
-.passport-card h2 {
-
-    margin-top: 5px;
-
-    margin-bottom: 25px;
-
-    font-size: 28px;
-
-}
-
-
-.passport-row {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 16px 0;
-
-    border-bottom: 1px solid #edf1ed;
-
-}
-
-
-.passport-row span {
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-
-    color: #718078;
-
-}
-
-
-.passport-row strong {
-
-    text-align: right;
-
-    color: #24372a;
-
-}
-
-
-.passport-status {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-top: 22px;
-
-    padding: 14px 16px;
-
-    border-radius: 14px;
-
-    background: #eef4ed;
-
-}
-
-
-.passport-status span {
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-
-    color: #718078;
-
-}
-
-
-.passport-status strong {
-
-    color: #315f43;
-
-}
-
-
-@media (max-width: 600px) {
-
-    .passport-card {
-
-        padding: 22px;
-
-    }
-
-
-    .passport-row {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 5px;
-
-    }
-
-
-    .passport-row strong {
-
-        text-align: left;
-
-    }
-
-
-    .passport-status {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 5px;
-
-    }
-
-}
-.back-button {
-
-    border: none;
-
-    background: transparent;
-
-    color: #718078;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    padding: 8px 0;
-
-    margin-bottom: 25px;
-
-}
-
-
-.back-button:hover {
-
-    color: #315f43;
-
-}
-/* SALAD CARD */
-
-.salad-card {
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 24px;
-
-    border: 1px solid #e2e9e2;
-
-    border-radius: 24px;
-
-    background: white;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
-}
-
-
-.salad-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 18px 40px
-        rgba(36, 55, 42, 0.12);
-
-}
-/* =========================
-   FRESHTRACE LANDING
-========================= */
-
-.landing-screen {
-
-    min-height: 85vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    padding: 60px 20px;
-
-}
-
-
-.landing-screen .eyebrow {
-
-    margin-bottom: 12px;
-
-}
-
-
-.landing-screen h1 {
-
-    margin: 0;
-
-    font-size: clamp(
-        48px,
-        8vw,
-        82px
-    );
-
-    line-height: 0.95;
-
-    letter-spacing: -3px;
-
-}
-
-
-.landing-description {
-
-    max-width: 480px;
-
-    margin: 22px auto;
-
-    color: #718078;
-
-    font-size: 17px;
-
-}
-
-
-/* SALAD VISUAL */
-
-.landing-illustration {
-
-    width: 150px;
-
-    height: 150px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin: 20px 0 30px;
-
-    border-radius: 50%;
-
-    background: #eef4ed;
-
-    font-size: 80px;
-
-    box-shadow:
-        0 15px 40px
-        rgba(36, 55, 42, 0.08);
-
-}
-
-
-/* MAIN BUTTON */
-
-.primary-button {
-
-    border: none;
-
-    padding: 15px 26px;
-
-    border-radius: 50px;
-
-    background: #315f43;
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.3px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-
-}
-
-
-.primary-button:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px
-        rgba(49, 95, 67, 0.2);
+    document.querySelector(".hero").style.display = "grid";
 
 }
