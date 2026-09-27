@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FRESHTRACE</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- BAGIAN UTAMA -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p class="eyebrow">
+                FRESHTRACE
+            </p>
+
+            <h1>
+                Get to Know
+                <br>
+                Your Salad.
+            </h1>
+<div class="batch-badge">
+    <span>
+        FRESHTRACE BATCH
+    </span>
+
+    <strong>
+        FT-2709-001
+    </strong>
+
+</div>
+<div class="passport-card">
+
+    <p class="eyebrow">
+        PRODUCT PASSPORT
+    </p>
+
+    <h2 id="passport-product">
+        Fresh Garden Salad
+    </h2>
+
+    <div class="passport-row">
+
+        <span>
+            BATCH
+        </span>
+
+        <strong id="passport-batch">
+            FT-2709-001
+        </strong>
+
+    </div>
+
+
+    <div class="passport-row">
+
+        <span>
+            PRODUCED
+        </span>
+
+        <strong id="passport-produced">
+            27 September 2026 • 08:30
+        </strong>
+
+    </div>
+
+
+    <div class="passport-row">
+
+        <span>
+            INGREDIENTS
+        </span>
+
+        <strong>
+            🥬 🥕 🌱
+        </strong>
+
+    </div>
+
+
+    <div class="passport-status">
+
+        <span>
+            TRACEABILITY
+        </span>
+
+        <strong>
+            ✓ RECORDED
+        </strong>
+
+    </div>
+
+</div>
+            <p>
+                Know your farmer.
+                Know your freshness.
+            </p>
+
+        </div>
+
+
+        <div class="salad-placeholder">
+
+            🥗
+
+            <p>
+                Your Salad
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BAGIAN BAHAN -->
+
+    <section class="ingredients-section">
+
+        <p class="eyebrow">
+            01 • YOUR INGREDIENTS
+        </p>
+
+        <h2>
+            What's inside your salad?
+        </h2>
+
+        <p>
+            Click an ingredient to discover
+            its journey.
+        </p>
+
+
+        <div class="ingredients">
+
+
+            <button
+                class="ingredient"
+                onclick="showIngredient('cabbage')"
+            >
+
+                <div class="ingredient-image">
+                    🥬
+                </div>
+
+                <h3>
+                    Cabbage
+                </h3>
+
+                <span>
+                    60 g
+                </span>
+
+            </button>
+            <button
+                class="ingredient"
+                onclick="showIngredient('carrot')"
+            >
+                <div class="ingredient-image">
+                    🥕
+                </div>
+
+                <h3>
+                    Carrot
+                </h3>
+
+                <span>
+                    40 g
+                </span>
+
+            </button>
+            <button
+                class="ingredient"
+                onclick="showIngredient('lettuce')"
+            >
+
+                <div class="ingredient-image">
+                    🥗
+                </div>
+
+                <h3>
+                    Lettuce
+                </h3>
+
+                <span>
+                    35 g
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="ingredient"
+                onclick="showIngredient('melon')"
+            >
+
+                <div class="ingredient-image">
+                    🍈
+                </div>
+
+                <h3>
+                    Melon
+                </h3>
+
+                <span>
+                    65 g
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TEMPAT TRACEABILITY -->
+
+    <section
+        id="traceability"
+        class="trace-section"
+    >
+
+        <p class="eyebrow">
+            02 • TRACEABILITY
+        </p>
+
+        <h2>
+            Ingredient Journey
+        </h2>
+
+
+        <div id="ingredient-detail">
+
+            <p>
+                Choose an ingredient above
+                to see its traceability.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+ <!-- FRESHNESS -->
+
+<section class="freshness">
+
+    <p class="eyebrow">
+        03 • FRESHNESS
+    </p>
+
+    <h2>
+        Your Salad's Freshness
+    </h2>
+
+    <div class="fresh-card">
+
+        <div class="fresh-status">
+
+            <div
+                id="fresh-status-dot"
+                class="fresh-dot"
+            ></div>
+
+            <div>
+
+                <span>
+                    CURRENT STATUS
+                </span>
+
+                <strong id="fresh-status">
+                    Checking...
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="fresh-score">
+
+            <strong id="fresh-percent">
+                --%
+            </strong>
+
+            <div class="fresh-bar">
+
+                <div
+                    id="fresh-progress"
+                    class="fresh-progress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="fresh-info">
+
+            <div>
+
+                <span>
+                    PRODUCED
+                </span>
+
+                <strong>
+                    27 September 2026
+                    <br>
+                    08:30
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    BEST CONSUMED BEFORE
+                </span>
+
+                <strong>
+                    28 September 2026
+                    <br>
+                    08:30
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    STORAGE
+                </span>
+
+                <strong>
+                    2–5°C
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- POPUP TRACEABILITY -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-content">
+
+        <button
+            class="close-button"
+            onclick="closePopup()"
+        >
+            ✕
+        </button>
+
+
+        <div id="popup-detail">
+
+        </div>
+
+    </div>
+
+</div>
+    <script src="script.js"></script>
+
+</body>
+</html>
