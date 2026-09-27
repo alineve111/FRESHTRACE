@@ -308,20 +308,6 @@ function updateProductPassport() {
     document.getElementById("passport-produced")
         .textContent = salad.producedAt;
 }
-function updateProductPassport() {
-
-    document.getElementById("passport-product")
-        .textContent = salad.productName;
-
-    document.getElementById("passport-batch")
-        .textContent = salad.batchId;
-
-    document.getElementById("passport-produced")
-        .textContent = salad.producedAt;
-
-}
-
-
 function getBatchFromURL() {
 
     const params =
