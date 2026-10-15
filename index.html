@@ -1,530 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>FRESHTRACE</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshTrace – Get to know your salad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
-
-
-    <!-- BAGIAN UTAMA -->
-
-    <section class=" hero landing-screen">
-
-        <div class="hero-text">
-
-            <p class="eyebrow">
-                FRESHTRACE
-            </p>
-
-            <h1>
-                Get to Know
-                <br>
-                Your Salad.
-            </h1>
-    <button
-    class="primary-button"
-    onclick="showSaladSelection()"
->
-    EXPLORE MY SALAD →
-</button>      
-<div
-    class="batch-badge"
-    style="display: none;"
->
-
-    <span>
-        FRESHTRACE BATCH
-    </span>
-
-    <strong>
-        FT-2709-001
-    </strong>
-
-<div
-    class="passport-card"
-    style="display: none;"
->
-
-    <p class="eyebrow">
-        PRODUCT PASSPORT
-    </p>
-
-    <h2 id="passport-product">
-        Fresh Garden Salad
-    </h2>
-
-    <div class="passport-row">
-
-        <span>
-            BATCH
-        </span>
-
-        <strong id="passport-batch">
-            FT-2709-001
-        </strong>
-
+<main>
+  <section id="home" class="screen hero">
+    <div class="hero-text">
+      <p class="brand">FreshTrace</p>
+      <h1>Get to know<br>your salad, from<br>farm to cup.</h1>
+      <p class="lead">Scan the QR code on the pack or pick a salad to see its ingredients, farmers, and freshness.</p>
+      <button class="btn" data-go="pick">Pick a salad</button>
     </div>
+    <svg class="hero-art" viewBox="0 0 520 460" role="img" aria-label="Illustration of a colorful salad bowl">
+      <circle cx="260" cy="235" r="205" fill="#fff" opacity=".4"/>
+      <circle cx="92" cy="118" r="46" fill="#ff8a1f"/><circle cx="92" cy="118" r="37" fill="#ffb347"/>
+      <path d="M92 81v74M55 118h74M66 92l52 52M118 92l-52 52" stroke="#fff" stroke-width="3" opacity=".8"/>
+      <path d="M440 78c32 0 46 21 37 46-8 24-27 38-37 44-10-6-29-20-37-44-9-25 5-46 37-46z" fill="#ff3d5a"/>
+      <path d="M423 78l17-14 17 14-17 7z" fill="#2fa84f"/>
+      <g fill="#ffd1d8"><circle cx="428" cy="108" r="3"/><circle cx="450" cy="106" r="3"/><circle cx="439" cy="128" r="3"/></g>
+      <ellipse cx="190" cy="215" rx="72" ry="34" transform="rotate(-25 190 215)" fill="#5cc45a"/>
+      <ellipse cx="338" cy="205" rx="74" ry="34" transform="rotate(28 338 205)" fill="#2fa84f"/>
+      <ellipse cx="262" cy="178" rx="64" ry="38" fill="#86d86a"/>
+      <rect x="352" y="206" width="84" height="22" rx="11" transform="rotate(-35 394 217)" fill="#ff8a1f"/>
+      <rect x="95" y="214" width="78" height="22" rx="11" transform="rotate(30 134 225)" fill="#ff8a1f"/>
+      <circle cx="226" cy="236" r="38" fill="#8e3fb0"/><path d="M198 236q28-32 56 0" stroke="#c88be4" stroke-width="5" fill="none"/>
+      <circle cx="318" cy="240" r="34" fill="#ff4b3e"/><circle cx="306" cy="228" r="7" fill="#fff" opacity=".55"/>
+      <circle cx="160" cy="252" r="26" fill="#ff4b3e"/>
+      <circle cx="268" cy="226" r="30" fill="#c6e98a" stroke="#2fa84f" stroke-width="7"/><g fill="#2fa84f"><circle cx="262" cy="222" r="2.5"/><circle cx="274" cy="224" r="2.5"/><circle cx="268" cy="234" r="2.5"/></g>
+      <path d="M80 252h360c0 100-70 170-180 170S80 352 80 252z" fill="#1f8a4c"/>
+      <rect x="68" y="240" width="384" height="24" rx="12" fill="#17402b"/>
+      <path d="M122 296q10 58 68 84" stroke="#fff" stroke-opacity=".35" stroke-width="10" fill="none" stroke-linecap="round"/>
+    </svg>
+  </section>
 
-    <div class="passport-row">
+  <section id="pick" class="screen wrap" hidden>
+    <button class="back" data-go="home">← Back</button>
+    <h2>Pick a salad</h2>
+    <div id="pick-list"></div>
+  </section>
 
-        <span>
-            PRODUCED
-        </span>
+  <section id="salad" class="screen wrap" hidden>
+    <button class="back" data-go="pick">← All salads</button>
+    <div class="detail">
+      <div class="photo"><img id="s-img" alt=""></div>
+      <div class="info">
+        <p class="chip" id="s-type"></p>
+        <h2 id="s-name"></h2>
+        <p id="s-goal" class="lead"></p>
 
-        <strong id="passport-produced">
-            27 September 2026 • 08:30
-        </strong>
+        <h3>Ingredients</h3>
+        <p class="hint">Tap an ingredient to see where it comes from and its journey.</p>
+        <div id="s-ing" class="ing-grid"></div>
+        <p class="meta"><b>Saus:</b> <span id="s-sauce"></span></p>
+        <p class="meta"><b>Catatan:</b> <span id="s-note"></span></p>
 
-    </div>
-
-    <div class="passport-row">
-
-        <span>
-            INGREDIENTS
-        </span>
-
-        <strong>
-            🥬 🥕 🌱
-        </strong>
-
-    </div>
-
-    <div class="passport-status">
-
-        <span>
-            TRACEABILITY
-        </span>
-
-        <strong>
-            ✓ RECORDED
-        </strong>
-
-    </div>
-
-</div>
-
-        <strong id="passport-batch">
-            FT-2709-001
-        </strong>
-
-    </div>
-
-
-    <div class="passport-row">
-
-        <span>
-            PRODUCED
-        </span>
-
-        <strong id="passport-produced">
-            27 September 2026 • 08:30
-        </strong>
-
-    </div>
-
-
-    <div class="passport-row">
-
-        <span>
-            INGREDIENTS
-        </span>
-
-        <strong>
-            🥬 🥕 🌱
-        </strong>
-
-    </div>
-
-
-    <div class="passport-status">
-
-        <span>
-            TRACEABILITY
-        </span>
-
-        <strong>
-            ✓ RECORDED
-        </strong>
-
-    </div>
-
-</div>
-          <p>
-    Discover where your ingredients come from,
-    <br>
-    from farm to your fork.
-</p>
+        <h3>Freshness</h3>
+        <div class="fresh">
+          <div class="fresh-top"><span class="dot" id="f-dot"></span><strong id="f-status"></strong><span id="f-pct"></span></div>
+          <div class="bar"><i id="f-bar"></i></div>
         </div>
 
-
-        <div class="salad-placeholder">
-
-            🥗
-
-            <p>
-                Your Salad
-            </p>
-
-        </div>
-
-    </section>
-<!-- PICK YOUR SALAD -->
-
-<section
-    id="salad-selection"
-    class="selection-screen"
-    style="display: none;"
->
-<button
-    class="back-button"
-    onclick="showHome()"
->
-    ← Back
-</button>
-    <p class="eyebrow">
-        FRESHTRACE
-    </p>
-
-    <h2>
-        PICK YOUR SALAD
-    </h2>
-
-    <p class="section-description">
-        Choose a salad to explore its ingredients.
-    </p>
-
-
-    <div class="salad-choice">
-
-        <button
-            class="salad-card"
-            onclick="showSaladIngredients()"
-        >
-
-            <div class="salad-image">
-                🥗
-            </div>
-
-            <div>
-
-                <span>
-                    FRESHTRACE
-                </span>
-
-                <h3>
-                    Fresh Garden Salad
-                </h3>
-
-                <p>
-                    Cabbage • Carrot • Lettuce
-                </p>
-
-            </div>
-
-            <strong>
-                →
-            </strong>
-
-        </button>
-
+        <h3>Product passport</h3>
+        <dl class="passport" id="s-pass"></dl>
+      </div>
     </div>
-
-</section>
-    <!-- BAGIAN BAHAN -->
-
-<section
-    id="ingredient-selection"
-    class="ingredients-section"
-    style="display: none;"
->
-<button
-    class="back-button"
-    onclick="showSaladSelection()"
->
-    ← Back to salads
-</button>
-        <p class="eyebrow">
-            01 • YOUR INGREDIENTS
-        </p>
-
-      <h2>
-    PICK YOUR INGREDIENT
-</h2>
-
-<p>
-    Choose an ingredient to trace
-    its journey from farm to fork.
-</p>
-
-        <div class="ingredients">
-
-
-            <button
-                class="ingredient"
-                onclick="showIngredient('cabbage')"
-            >
-
-                <div class="ingredient-image">
-                    🥬
-                </div>
-
-                <h3>
-                    Cabbage
-                </h3>
-
-                <span>
-                    60 g
-                </span>
-
-            </button>
-            <button
-                class="ingredient"
-                onclick="showIngredient('carrot')"
-            >
-                <div class="ingredient-image">
-                    🥕
-                </div>
-
-                <h3>
-                    Carrot
-                </h3>
-
-                <span>
-                    40 g
-                </span>
-
-            </button>
-            <button
-                class="ingredient"
-                onclick="showIngredient('lettuce')"
-            >
-
-                <div class="ingredient-image">
-                    🥗
-                </div>
-
-                <h3>
-                    Lettuce
-                </h3>
-
-                <span>
-                    35 g
-                </span>
-
-            </button>
-
-
-
-            <button
-                class="ingredient"
-                onclick="showIngredient('melon')"
-            >
-
-                <div class="ingredient-image">
-                    🍈
-                </div>
-
-                <h3>
-                    Melon
-                </h3>
-
-                <span>
-                    65 g
-                </span>
-
-            </button>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- TEMPAT TRACEABILITY -->
-
-    <section
-        id="traceability"
-        class="trace-section"
-    >
-
-        <p class="eyebrow">
-            02 • TRACEABILITY
-        </p>
-
-        <h2>
-            Ingredient Journey
-        </h2>
-
-
-        <div id="ingredient-detail">
-
-            <p>
-                Choose an ingredient above
-                to see its traceability.
-            </p>
-
-        </div>
-
-    </section>
-
-
-
- <!-- FRESHNESS -->
-
-<section class="freshness">
-
-    <p class="eyebrow">
-        03 • FRESHNESS
-    </p>
-
-    <h2>
-        Your Salad's Freshness
-    </h2>
-
-    <div class="fresh-card">
-
-        <div class="fresh-status">
-
-            <div
-                id="fresh-status-dot"
-                class="fresh-dot"
-            ></div>
-
-            <div>
-
-                <span>
-                    CURRENT STATUS
-                </span>
-
-                <strong id="fresh-status">
-                    Checking...
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="fresh-score">
-
-            <strong id="fresh-percent">
-                --%
-            </strong>
-
-            <div class="fresh-bar">
-
-                <div
-                    id="fresh-progress"
-                    class="fresh-progress"
-                ></div>
-
-            </div>
-
-        </div>
-
-
-        <div class="fresh-info">
-
-            <div>
-
-                <span>
-                    PRODUCED
-                </span>
-
-                <strong>
-                    27 September 2026
-                    <br>
-                    08:30
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    BEST CONSUMED BEFORE
-                </span>
-
-                <strong>
-                    28 September 2026
-                    <br>
-                    08:30
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    STORAGE
-                </span>
-
-                <strong>
-                    2–5°C
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- POPUP TRACEABILITY -->
-
-<div id="popup" class="popup">
-
-    <div class="popup-content">
-
-        <button
-            class="close-button"
-            onclick="closePopup()"
-        >
-            ✕
-        </button>
-
-
-        <div id="popup-detail">
-
-        </div>
-
-    </div>
-
-</div>
-    <script src="script.js"></script>
-
+  </section>
+</main>
+
+<dialog id="dlg"><button class="x" aria-label="Close">✕</button><div id="dlg-body"></div></dialog>
+<script src="script.js"></script>
 </body>
 </html>
-function showHome() {
-
-    document.getElementById("salad-selection")
-        .style.display = "none";
-
-    document.getElementById("ingredient-selection")
-        .style.display = "none";
-
-    document.querySelector(".hero")
-        .style.display = "flex";
-
-}
